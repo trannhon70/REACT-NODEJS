@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dish play CRUD</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Bordered Table</h2>
+        <p>The .table-bordered class adds borders on all sides of the table and the cells:</p>            
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+                <th>Email</th>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <% for(var i=0; i < dataTable.length; i++) { %>
+                <tr>
+                  <td><%= dataTable[i].email %></td>
+                  <td><%= dataTable[i].firstName %></td>
+                  <td><%= dataTable[i].lastName %></td>
+                  <td><%= dataTable[i].address %></td>
+                  <td>
+                    <a href="/edit-crud?id=<%= dataTable[i].id %>" type="button">Edit</a>
+                    <a href="/delete-crud?id=<%= dataTable[i].id %>" type="button">delete</a>
+                  </td>
+                </tr>
+             <% } %>
+          </tbody>
+        </table>
+      </div>
+</body>
+</html>
