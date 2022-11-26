@@ -18,6 +18,14 @@ let initWebRouter = (app ) =>{
 
     //api
     router.post('/api/login',userController.hanldLogin);
+    router.get('/api/get-all-user',userController.handleGetAllUser);
+    //thực hiện tạo user
+    router.post('/api/create-new-user',userController.handleCreateNewUser);
+    //thực hiện sửa user
+    router.put('/api/edit-user',userController.handleEditUser);
+    //thực hiện xóa user
+    router.delete('/api/delete-user',userController.handleDeleteUser);
+
 
 
     return app.use("/", router);

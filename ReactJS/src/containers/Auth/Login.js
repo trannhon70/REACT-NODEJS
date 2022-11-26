@@ -48,7 +48,9 @@ class Login extends Component {
             if(data && data.errCode === 0){
                 // eslint-disable-next-line no-undef
                 this.props.userLoginSucess(data.user)
-                console.log('login seccess');
+                // console.log('login seccess');
+                alert('đăng nhập thành công');
+                return;
             }
         } catch (error) {
             // console.log('kevin',error.response);
