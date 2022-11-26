@@ -28,6 +28,9 @@ class UserManage extends Component {
         <div className="title text-center">
             Manage with users
         </div>
+        <div className="mx-1">
+            <button className="btn btn-primary px-3"><i className="fa fa-plus" style={{marginRight:'10px'}}></i>Add new user</button>
+        </div>
         <div className="users-table mt-3 mx-1">
           <table id="customers">
             <tr>
