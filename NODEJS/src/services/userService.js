@@ -112,11 +112,11 @@ let createNewUser = (data) => {
       if (check === true) {
         resovel({
           errCode: 1,
-          message:
+          errMessage:
             "Email của bạn đã được đăng ký, vui lòng sử dụng email khác!",
         });
-      }
-      let hashPasswordFromBcrypt = await hashUserPassword(data.password);
+      }else{
+        let hashPasswordFromBcrypt = await hashUserPassword(data.password);
       // console.log('data',data);
       // console.log('hashPasswordFromBcrypt',hashPasswordFromBcrypt);
       await db.User.create({
@@ -131,8 +131,11 @@ let createNewUser = (data) => {
       });
       resolve({
         errCode: 0,
-        message: "Tạo người dùn thành công",
+        errMessage: "Tạo người dùn thành công",
       });
+      }
+      
+      
     } catch (e) {
       console.log(e);
     }
@@ -152,9 +155,12 @@ let deleteUser = (userId) => {
           errMessage: "user không tồn tại !",
         });
       }
-      // if(user){
-      //   await user.destroy();
-      // }
+      if(user){
+        resolve({
+          errCode: 3,
+          errMessage: "Xóa user thành công !",
+        });
+      }
       await db.User.destroy({
         where: { id: userId },
       });
@@ -170,8 +176,9 @@ let deleteUser = (userId) => {
 let updateUserData = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      console.log(data.id);
+      console.log(data);
       if (!data.id) {
+        // console.log('check nodejs', data);
         resolve({
           errCode: 2,
           message: "missing required parameters",
