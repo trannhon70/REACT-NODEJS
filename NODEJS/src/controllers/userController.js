@@ -63,6 +63,21 @@ let handleDeleteUser = async(req, res) =>{
     return res.status(200).json(message);
 }
 
+//lấy dánh sách trong allcodes theo phân quyền ROLE
+let handleGetAllCodes = async(req, res) =>{
+    try {
+        // let id = req.query.id;
+        let data = await userService.getAllCodeService(req.query.type)
+        // console.log(data);
+        return res.status(200).json(data)
+    } catch (error) {
+        // console.log('get all code server', error);
+        return res.status(200).json({
+            errCode: -1,
+            errMessage:'Error from server'
+        })
+    }
+}
 
 module.exports={
     hanldLogin: hanldLogin,
@@ -70,5 +85,7 @@ module.exports={
     handleCreateNewUser:handleCreateNewUser,
     handleEditUser:handleEditUser,
     handleDeleteUser :handleDeleteUser,
-    handleEditUser: handleEditUser
+    handleEditUser: handleEditUser,
+
+    handleGetAllCodes:handleGetAllCodes
 }

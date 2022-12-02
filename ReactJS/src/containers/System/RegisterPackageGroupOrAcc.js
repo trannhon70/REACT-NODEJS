@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 class RegisterPackageGroupOrAcc extends Component {
 
+    // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props);
 

@@ -216,6 +216,7 @@ class Navigator extends Component {
                                                                 link={subMenu.link}
                                                                 onClick={this.closeOtherExpand}
                                                                 onLinkClick={onLinkClick}
+                                                                active ={isMenuHasSubMenuActive}
                                                             />
                                                         ))}
                                                     </MenuWithRouter>

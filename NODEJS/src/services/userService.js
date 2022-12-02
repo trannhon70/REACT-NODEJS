@@ -22,7 +22,7 @@ let hanldUserLogin = (email, password) => {
         //user already exits
         let user = await db.User.findOne({
           //lấy ra email và roleId
-          attributes: ["id", "email", "password", "roleId"],
+          attributes: ["id", "email", "password", "roleId","firstName", "lastName"],
           where: { email: email },
 
           raw: true,
@@ -94,7 +94,7 @@ let getAllUser = (userId) => {
             exclude: ["password"],
           },
         });
-        console.log("users", users);
+        // console.log("users", users);
       }
       resovel(users);
     } catch (e) {
@@ -210,10 +210,35 @@ let updateUserData = (data) => {
   });
 };
 
+//lấy dánh sách trong allcodes theo phân quyền ROLE
+let getAllCodeService =(typeInput) =>{
+  return new Promise(async(resolve, reject)=>{
+    try {
+      if(!typeInput){
+        resolve({
+          errCode:1,
+          errMessage:'Missing required parameters !'
+        })
+      }else{
+        let res ={};
+        let allCode = await db.Allcode.findAll({
+          where:{type: typeInput}
+        })
+        res.errCode = 0;
+        res.data = allCode;
+        resolve(res);
+      }
+     
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
 module.exports = {
   hanldUserLogin: hanldUserLogin,
   getAllUser: getAllUser,
   createNewUser: createNewUser,
   deleteUser: deleteUser,
   updateUserData: updateUserData,
+  getAllCodeService:getAllCodeService
 };

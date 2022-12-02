@@ -1,13 +1,20 @@
 import React, { Component, Fragment } from 'react';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import './HomeHeader.scss'
-import logo from '../../assets/images/logo.svg'
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import logo from '../../assets/images/logo.svg';
+import { changeLanguegeApp } from '../../store/actions';
+import { LANGUAGES } from '../../utils';
+import './HomeHeader.scss';
 class HomeHeader extends Component {
-
+    changeLanguege = (language) =>{
+        // alert(language)
+        this.props.changeLanguegeAppRedux(language)
+    }
     render() {
-        console.log('check props', this.props);
+
+        let {language, userInfo} = this.props
+        
+        // console.log('check user info', userInfo);
         return (
             <Fragment>
                 <div className='home-header-container'>
@@ -37,8 +44,8 @@ class HomeHeader extends Component {
                         </div>
                         <div className='right-content'>
                             <div className='support'><i className="fa fa-question"></i>Hỗ trợ</div>
-                            <div className='language-vi' >VN</div>
-                            <div className='language-en' >EN</div>
+                            <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={()=>this.changeLanguege(LANGUAGES.VI)} >VI</span> </div>
+                            <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'} ><span onClick={()=>this.changeLanguege(LANGUAGES.EN)}>EN</span></div>
                         </div>
                     </div>
                 </div>
@@ -114,12 +121,15 @@ class HomeHeader extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
-        language: state.app.language
+        userInfo: state.user.userInfo,
+        language: state.app.language,
+        
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        changeLanguegeAppRedux : (language)=> dispatch(changeLanguegeApp(language))
     };
 };
 

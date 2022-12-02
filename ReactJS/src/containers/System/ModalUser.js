@@ -21,6 +21,7 @@ class ModalUser extends Component {
   listenEmiiter() {
     emitter.on('EVENT_CLEAR_MODAL_DATA',data => {
       // console.log('listen emiter:', data);
+      // eslint-disable-next-line react/no-direct-mutation-state
       this.state = {
         email: '',
         password: '',

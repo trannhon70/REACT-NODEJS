@@ -18,6 +18,7 @@ let initWebRouter = (app ) =>{
 
     //api
     router.post('/api/login',userController.hanldLogin);
+    //lấy toàn bộ user
     router.get('/api/get-all-user',userController.handleGetAllUser);
     //thực hiện tạo user
     router.post('/api/create-new-user',userController.handleCreateNewUser);
@@ -25,6 +26,10 @@ let initWebRouter = (app ) =>{
     router.put('/api/edit-user',userController.handleEditUser);
     //thực hiện xóa user
     router.delete('/api/delete-user',userController.handleDeleteUser);
+
+    //lấy dánh sách trong allcodes theo phân quyền ROLE
+    router.get('/api/get-all-codes',userController.handleGetAllCodes);
+
 
 
 

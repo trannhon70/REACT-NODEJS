@@ -1,33 +1,38 @@
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    isLoggedIn: false,
-    adminInfo: null
+    gender:[],
+    roles: [],
+    positions: []
 }
 
-const appReducer = (state = initialState, action) => {
+const adminReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.ADMIN_LOGIN_SUCCESS:
+        case actionTypes.FECTH_GENDER_START:
+            console.log('fire fecth gender start:' ,action);
             return {
                 ...state,
-                isLoggedIn: true,
-                adminInfo: action.adminInfo
+
             }
-        case actionTypes.ADMIN_LOGIN_FAIL:
+        case actionTypes.FECTH_GENDER_SUCCESS:
+            let copyState = {...state};
+            copyState.gender = action.data;
+            console.log('fire fecth gender success:' ,copyState);
+
             return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
+                ...copyState,
+
             }
-        case actionTypes.PROCESS_LOGOUT:
+        case actionTypes.FECTH_GENDER_FAIDED:
+            console.log('fire fecth gender faided:' ,action);
+
             return {
                 ...state,
-                isLoggedIn: false,
-                adminInfo: null
+
             }
         default:
             return state;
     }
 }
 
-export default appReducer;
+export default adminReducer;
