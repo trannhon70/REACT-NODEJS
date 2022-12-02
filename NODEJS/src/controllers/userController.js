@@ -66,6 +66,12 @@ let handleDeleteUser = async(req, res) =>{
 //lấy dánh sách trong allcodes theo phân quyền ROLE
 let handleGetAllCodes = async(req, res) =>{
     try {
+        
+        // setTimeout(async()=>{
+        //     let data = await userService.getAllCodeService(req.query.type)
+        // // console.log(data);
+        // return res.status(200).json(data)
+        // },3000)
         // let id = req.query.id;
         let data = await userService.getAllCodeService(req.query.type)
         // console.log(data);
