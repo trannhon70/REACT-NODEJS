@@ -4,7 +4,8 @@ const initialState = {
     isLoadingGender: false,
     gender: [],
     roles: [],
-    positions: []
+    positions: [],
+    allUsers: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -80,6 +81,21 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.FECTH_ROLE_FAIDED:
             state.roles = [];
+            // console.log('fire fecth gender faided:', action);
+            return {
+                ...state,
+            }
+
+        //fecth all user redux 
+        case actionTypes.FETCH_ALL_USER_SUCCESS:
+            state.allUsers = action.users;
+            // console.log('fire fecth gender faided:', action);
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_ALL_USER_FAILED:
+            state.allUsers = [];
             // console.log('fire fecth gender faided:', action);
             return {
                 ...state,

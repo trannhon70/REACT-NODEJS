@@ -30,9 +30,12 @@ const editUserService = (editData) =>{
     return axios.put('/api/edit-user', editData);
 }
 
+//lấy toàn bộ user theo phân quyền 
 const getAllcodeService = (inputType) =>{
     return axios.get(`/api/get-all-codes?type=${inputType}`)
 }
+
+
 export  {
     handleLoginApi,
     getAllUsers,
