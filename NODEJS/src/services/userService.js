@@ -107,9 +107,10 @@ let getAllUser = (userId) => {
 let createNewUser = (data) => {
   return new Promise(async (resovel, reject) => {
     try {
+      // console.log('check avarta', data);
       //check email co ton tai hay ko
       let check = await checkUserEmail(data.email);
-      if (check === true) {
+      if (check === true ) {
         resovel({
           errCode: 1,
           errMessage:
@@ -129,6 +130,8 @@ let createNewUser = (data) => {
         gender: data.gender ,
         roleId: data.roleId,
         positionId: data.positionId,
+
+        image: data.avatar,
       });
       resolve({
         errCode: 0,
@@ -197,6 +200,10 @@ let updateUserData = (data) => {
         user.positionId = data.positionId;
         user.gender = data.gender;
         user.phoneNumber = data.phoneNumber;
+        if(data.avatar){
+          user.image = data.avatar;
+        }
+        
 
         await user.save();
 
